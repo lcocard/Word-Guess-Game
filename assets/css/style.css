@@ -1,0 +1,23 @@
+/*  Word-Guess-Game index.html */
+
+html {
+    background-color: black;
+}
+
+main {
+    background-color: black;   
+}
+
+
+nav {
+    background-color: black;
+}
+
+section {
+    text-align: center;
+    color: white;
+}
+
+.message1 {
+    color: white;
+}
