@@ -40,7 +40,9 @@
             <div class="row">
                 <div class="col-sm-12" style="padding: 0; border-bottom: 1px solid black">
                     <section>
-                        <p>Song Title</p>
+                        <div class="song">
+                            <p>Song Title</p>
+                        </div>
                     </section>
                 </div>
             </div>
@@ -65,6 +67,46 @@
                         var wrongLetterIndex = 0;
                         var wins = 0;
                         var wordGuessArray = ["genesis", "madonna", "blondie", "queen", "rush", "police", "metallica", "aerosmith", "scorpions", "eurythmics"]
+                        var genesis = {
+                            songTitle: "Genesis",
+                            pic: "assets/images/genesis.png"
+                        }
+                        var madonna = {
+                            songTitle: "Madonna",
+                            pic: "assets/images/MADONNA.png"
+                        }
+                        var blondie = {
+                            songTitle: "Blondie",
+                            pic: "assets/images/blondie.png"
+                        }
+                        var queen = {
+                            songTitle: "Queen",
+                            pic: "assets/images/queen-band.png"
+                        }
+                        var rush = {
+                            songTitle: "Rush",
+                            pic: "assets/images/Rush-band.png"
+                        }
+                        var police = {
+                            songTitle: "Police",
+                            pic: "assets/images/thepolice.png"
+                        }
+                        var metallica = {
+                            songTitle: "Metallica",
+                            pic: "assets/images/metallica.png"
+                        }
+                        var aerosmith = {
+                            songTitle: "Aerosmith",
+                            pic: "assets/images/aerosmith.png"
+                        }
+                        var scorpions = {
+                            songTitle: "Scorpions",
+                            pic: "assets/images/scorpions.png"
+                        }
+                        var eurythmics = {
+                            songTitle: "Eurythmics",
+                            pic: "assets/images/eurythmics.png"
+                        }
                         /* ***** Pick random word from array  */
                         var wordGuessPick = wordGuessArray[Math.floor(Math.random() * wordGuessArray.length)];
                         /*  ***** Split word into array */
@@ -113,9 +155,9 @@
                                             userGuessLetter.push(userGuessLetterElement);
                                             userGuessLetterText.textContent = " Letters already guessed: " + userGuessLetter.join('');
                                             if (JSON.stringify(currentGuessWord) == JSON.stringify(splitWordGuessPick)) {
-                                            wins++;
-                                            winsText.textContent = " Wins: " + wins;
-                                        }
+                                                wins++;
+                                                winsText.textContent = " Wins: " + wins;
+                                            }
                                         }
                                     }
                                     else {
