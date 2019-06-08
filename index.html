@@ -95,42 +95,43 @@
                             for (var i = 0; i < 20; i++) {
                                 // This loop is for checking if there are any letters remaining to be guessed. It will terminate the loop that iterates 20 times, as the word has been guessed already, and we will reset the variables
                                 // The image will be changed with a new one showing the band, there will be a title displayed at the top and a song will play
-                                for (var j = 0; j < currentGuessWord.length; j++) {
-                                    if (currentGuessWord[j] === "- ") {
-                                        // Determines which key was pressed.
-                                        var userGuessLetterElement = event.key;
-                                        console.log(userGuessLetterElement);
-                                        // This logic determines if the key pressed by the user is one of the letters from the word to be guessed
-                                        for (var k = 0; k < splitWordGuessPick.length; k++) {
-                                            if (userGuessLetterElement === splitWordGuessPick[k]) {
-                                                currentGuessWord[k] = userGuessLetterElement;
-                                                alreadyGuessedLetterIndex++;
-                                                foundLetterFlag = 1;
-                                                console.log(alreadyGuessedLetterIndex);
-                                                // Hide the directions
-                                                directionsText.textContent = "";
-                                                currentGuessWordText.textContent = " Current Word: " + currentGuessWord.join('');
-                                                if (alreadyGuessedLetterIndex === 1) {
-                                                    userGuessLetter.push(userGuessLetterElement);
-                                                    
-                                                    userGuessLetterText.textContent = " Letters already guessed: " + userGuessLetter.join('');
-                                                }
-                                            }
-                                            else {
-                                                // Hide the directions
-                                                directionsText.textContent = "";
-                                                wrongLetterIndex++;
-                                            }
+
+                                // Determines which key was pressed.
+                                var userGuessLetterElement = event.key;
+                                console.log(userGuessLetterElement);
+                                // This logic determines if the key pressed by the user is one of the letters from the word to be guessed
+                                for (var k = 0; k < splitWordGuessPick.length; k++) {
+                                    if (userGuessLetterElement === splitWordGuessPick[k]) {
+                                        currentGuessWord[k] = userGuessLetterElement;
+                                        alreadyGuessedLetterIndex++;
+                                        foundLetterFlag = 1;
+                                        console.log(alreadyGuessedLetterIndex);
+                                        // Hide the directions
+                                        directionsText.textContent = "";
+                                        currentGuessWordText.textContent = " Current Word: " + currentGuessWord.join('');
+                                        if (alreadyGuessedLetterIndex === 1) {
+                                            userGuessLetter.push(userGuessLetterElement);
+                                            userGuessLetterText.textContent = " Letters already guessed: " + userGuessLetter.join('');
+                                            if (JSON.stringify(currentGuessWord) == JSON.stringify(splitWordGuessPick)) {
+                                            wins++;
+                                            winsText.textContent = " Wins: " + wins;
                                         }
-                                        if (foundLetterFlag !== 1 && wrongLetterIndex === splitWordGuessPick.length) {
-                                            guessesremaining = guessesremaining - 1;
-                                            guessesremainingText.textContent = " Number of guesses remaining: " + guessesremaining;
                                         }
                                     }
+                                    else {
+                                        // Hide the directions
+                                        directionsText.textContent = "";
+                                        wrongLetterIndex++;
+                                    }
                                 }
+                                if (foundLetterFlag !== 1 && wrongLetterIndex === splitWordGuessPick.length) {
+                                    guessesremaining = guessesremaining - 1;
+                                    guessesremainingText.textContent = " Number of guesses remaining: " + guessesremaining;
+                                }
+
+
                             }
-                            
-                        }   
+                        }
                     </script>
                 </div>
             </div>
