@@ -1,54 +1,69 @@
-
+// debugger
 var alreadyGuessedLetterIndex = 0;
 var foundLetterFlag = 0;
 var wrongLetterIndex = 0;
 var wins = 0;
-var wordGuessArray = ["genesis", "madonna", "blondie", "queen", "rush", "police", "metallica", "aerosmith", "scorpions", "eurythmics"]
-var genesis = {
-    songTitle: "Genesis",
-    pic: "assets/images/genesis.png"
-}
-var madonna = {
-    songTitle: "Madonna",
-    pic: "assets/images/MADONNA.png"
-}
-var blondie = {
-    songTitle: "Blondie",
-    pic: "assets/images/blondie.png"
-}
-var queen = {
-    songTitle: "Queen",
-    pic: "assets/images/queen-band.png"
-}
-var rush = {
-    songTitle: "Rush",
-    pic: "assets/images/Rush-band.png"
-}
-var police = {
-    songTitle: "Police",
-    pic: "assets/images/thepolice.png"
-}
-var metallica = {
-    songTitle: "Metallica",
-    pic: "assets/images/metallica.png"
-}
-var aerosmith = {
-    songTitle: "Aerosmith",
-    pic: "assets/images/aerosmith.png"
-}
-var scorpions = {
-    songTitle: "Scorpions",
-    pic: "assets/images/scorpions.png"
-}
-var eurythmics = {
-    songTitle: "Eurythmics",
-    pic: "assets/images/eurythmics.png"
-}
+var wordGuessArray = [
+    {
+        name: "genesis",
+        songTitle: "Genesis",
+        pic: "assets/images/genesis.png"
+    },
+    {
+        name: "madonna",
+        songTitle: "Madonna",
+        pic: "assets/images/MADONNA.png"
+    },
+    {
+        name: "blondie",
+        songTitle: "Blondie",
+        pic: "assets/images/blondie.png"
+    },
+    {
+        name: "queen",
+        songTitle: "Queen",
+        pic: "assets/images/queen-band.png"
+    },
+    {
+        name: "rush",
+        songTitle: "Rush",
+        pic: "assets/images/Rush-band.png"
+    },
+    {
+        name: "police",
+        songTitle: "Police",
+        pic: "assets/images/thepolice.png"
+    },
+    {
+        name: "metallica",
+        songTitle: "Metallica",
+        pic: "assets/images/metallica.png"
+    },
+    {
+        name: "aerosmith",
+        songTitle: "Aerosmith",
+        pic: "assets/images/aerosmith.png"
+    },
+    {
+        name: "scorpions",
+        songTitle: "Scorpions",
+        pic: "assets/images/scorpions.png"
+    },
+    {
+        name: "eurythmics",
+        songTitle: "Eurythmics",
+        pic: "assets/images/eurythmics.png"
+    }
+]
 /* ***** Pick random word from array  */
 var wordGuessPick = wordGuessArray[Math.floor(Math.random() * wordGuessArray.length)];
 /*  ***** Split word into array */
-var splitWordGuessPick = wordGuessPick.split("");
+var splitWordGuessPick = wordGuessPick.name.split("");
+var songTitleWordGuessPick = wordGuessPick.songTitle;
+var picWordGuessPick = wordGuessPick.pic;
 console.log(splitWordGuessPick);
+console.log(wordGuessPick.songTitle);
+console.log(wordGuessPick.pic);
 var currentGuessWord = ["- "];
 var guessesremaining = 20;
 var userGuessLetter = [" "];
@@ -57,7 +72,9 @@ var winsText = document.getElementById("wins-text");
 var currentGuessWordText = document.getElementById("currentGuessWord-text");
 var guessesremainingText = document.getElementById("guessesremaining-text");
 var userGuessLetterText = document.getElementById("userGuessLetter-text");
+var songText = document.getElementById("song-text");
 winsText.textContent = "Wins: " + wins;
+songText.textContent = " ";
 /* Build array to be dispalyed for Current Word */
 for (var s = 1; s < splitWordGuessPick.length; s++) {
     currentGuessWord.push("- ");
@@ -94,6 +111,7 @@ document.onkeyup = function (event) {
                     if (JSON.stringify(currentGuessWord) == JSON.stringify(splitWordGuessPick)) {
                         wins++;
                         winsText.textContent = " Wins: " + wins;
+                        songText.textContent = " " + songTitleWordGuessPick;
                     }
                 }
             }
