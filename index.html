@@ -84,8 +84,8 @@
                             currentGuessWord.push("- ");
                         }
                         currentGuessWordText.textContent = " Current Word: " + currentGuessWord.join('');
-                        guessesremainingText.textContent = "Number of guesses remaining: " + guessesremaining;
-                        userGuessLetterText.textContent = "Letters already guessed: " + userGuessLetter;
+                        guessesremainingText.textContent = " Number of guesses remaining: " + guessesremaining;
+                        userGuessLetterText.textContent = " Letters already guessed: " + userGuessLetter;
                         // This function is run whenever the user presses a key.
                         document.onkeyup = function (event) {
                             var alreadyGuessedLetterIndex = 0;
@@ -109,10 +109,11 @@
                                                 console.log(alreadyGuessedLetterIndex);
                                                 // Hide the directions
                                                 directionsText.textContent = "";
+                                                currentGuessWordText.textContent = " Current Word: " + currentGuessWord.join('');
                                                 if (alreadyGuessedLetterIndex === 1) {
                                                     userGuessLetter.push(userGuessLetterElement);
-                                                    currentGuessWordText.textContent = " Current Word: " + currentGuessWord.join('');
-                                                    userGuessLetterText.textContent = "Letters already guessed: " + userGuessLetter.join('');
+                                                    
+                                                    userGuessLetterText.textContent = " Letters already guessed: " + userGuessLetter.join('');
                                                 }
                                             }
                                             else {
@@ -123,11 +124,12 @@
                                         }
                                         if (foundLetterFlag !== 1 && wrongLetterIndex === splitWordGuessPick.length) {
                                             guessesremaining = guessesremaining - 1;
-                                            guessesremainingText.textContent = "Number of guesses remaining: " + guessesremaining;
+                                            guessesremainingText.textContent = " Number of guesses remaining: " + guessesremaining;
                                         }
                                     }
                                 }
                             }
+                            
                         }   
                     </script>
                 </div>
