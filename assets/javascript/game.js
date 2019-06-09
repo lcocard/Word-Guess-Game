@@ -73,6 +73,27 @@ var currentGuessWordText = document.getElementById("currentGuessWord-text");
 var guessesremainingText = document.getElementById("guessesremaining-text");
 var userGuessLetterText = document.getElementById("userGuessLetter-text");
 var songText = document.getElementById("song-text");
+// var picText = document.getElementById("pic-text");
+/* var img = new Image();
+var div = document.getElementById("band-pic");
+img.onload = function () {
+    div.appendChild(img);
+}
+img.src = "assets/images/4-WordGuess.jpg"; */
+function appendImage(imageSource, containerId, imageId) {
+    var img = document.createElement("IMG");
+    img.src = imageSource;
+    img.setAttribute('id', imageId);
+    document.getElementById(containerId).appendChild(img);
+    return imageId;
+}
+
+function removeImage(imageId) {
+    var elementToBeRemoved = document.getElementById(imageId);
+    elementToBeRemoved.parentNode.removeChild(elementToBeRemoved);
+}
+
+
 winsText.textContent = "Wins: " + wins;
 songText.textContent = " ";
 /* Build array to be dispalyed for Current Word */
@@ -112,6 +133,14 @@ document.onkeyup = function (event) {
                         wins++;
                         winsText.textContent = " Wins: " + wins;
                         songText.textContent = " " + songTitleWordGuessPick;
+                     /*   img = new Image();
+                        div = document.getElementById("band-pic");
+                        img.onload = function () {
+                            div.appendChild(img);
+                        }
+                        img.src = picWordGuessPick; */
+                        removeImage("pic-text");
+                        var myImage = appendImage(picWordGuessPick, "band-pic", "pic-text");
                     }
                 }
             }

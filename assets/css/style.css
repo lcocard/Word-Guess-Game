@@ -25,3 +25,11 @@ section {
 .message1 {
     color: white;
 }
+
+#song-text {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    color: #e83e8c;
+    font-style: italic;
+    font-size: 4rem;
+}
