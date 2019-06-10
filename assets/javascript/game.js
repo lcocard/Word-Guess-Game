@@ -117,7 +117,7 @@ function timeout_trigger() {
 }
 
 function timeout_init() {
-    setTimeout('timeout_trigger()', 2000);
+    setTimeout('timeout_trigger()', 250);
 }
 
 
