@@ -165,9 +165,11 @@ document.onkeyup = function (event) {
             // Hide the directions
             directionsText.textContent = "";
             currentGuessWordText.textContent = " Current Word: " + currentGuessWord.join('');
-            if (alreadyGuessedLetterIndex !== 0) {
+            if (alreadyGuessedLetterIndex === 1) {
                 userGuessLetter.push(userGuessLetterElement);
                 userGuessLetterText.textContent = " Letters already guessed: " + userGuessLetter.join('');
+            }
+            if (alreadyGuessedLetterIndex !== 0) {
                 // Checking if the user has guessed the entire word:
                 if (JSON.stringify(currentGuessWord) === JSON.stringify(splitWordGuessPick)) {
                     wins++;
