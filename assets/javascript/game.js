@@ -109,6 +109,17 @@ function removeImage(imageId) {
     elementToBeRemoved.parentNode.removeChild(elementToBeRemoved);
 }
 
+//setTimeout() function allows code to be executed a set time after some trigger - window alert;
+//used to delay the initialize() function, otherwise it starts before pictures are loaded.
+function timeout_trigger() {
+    window.alert("Well done, you won!");
+    document.body.addEventListener("click", initialize(),{once:true});
+}
+
+function timeout_init() {
+    setTimeout('timeout_trigger()', 2000);
+}
+
 
 console.log(guessesremaining);
 
@@ -123,68 +134,59 @@ document.onkeyup = function (event) {
     var foundLetterFlag = 0;
     var wrongLetterIndex = 0;
 
-    // This loop is for limiting the user tries to 20 and increasing the wining number if the entire word was guessed:
-    // for (var i = 0; i < 20; i++) {
+    // Determines which key was pressed.
+    var userGuessLetterElement = event.key;
+    console.log(userGuessLetterElement);
+    // This logic determines if the key pressed by the user is one of the letters from the word to be guessed:
+    for (var k = 0; k < splitWordGuessPick.length; k++) {
+        if (userGuessLetterElement === splitWordGuessPick[k]) {
+            currentGuessWord[k] = userGuessLetterElement;
+            alreadyGuessedLetterIndex++;
+            foundLetterFlag = 1;
+            console.log(alreadyGuessedLetterIndex);
+            // Hide the directions
+            directionsText.textContent = "";
+            currentGuessWordText.textContent = " Current Word: " + currentGuessWord.join('');
+            if (alreadyGuessedLetterIndex === 1) {
+                userGuessLetter.push(userGuessLetterElement);
+                userGuessLetterText.textContent = " Letters already guessed: " + userGuessLetter.join('');
+                // Checking if the user has guessed the entire word:
+                if (JSON.stringify(currentGuessWord) === JSON.stringify(splitWordGuessPick)) {
+                    wins++;
+                    winsText.textContent = " Wins: " + wins;
+                    songText.textContent = " " + songTitleWordGuessPick;
+                    removeImage("pic-text");
+                    myImage = appendImage(picWordGuessPick, "band-pic", "pic-text");
+                    console.log(guessesremaining);
+                    console.log(JSON.stringify(currentGuessWord));
+                    console.log(JSON.stringify(splitWordGuessPick));
 
-        // Determines which key was pressed.
-        var userGuessLetterElement = event.key;
-        console.log(userGuessLetterElement);
-        // This logic determines if the key pressed by the user is one of the letters from the word to be guessed:
-        for (var k = 0; k < splitWordGuessPick.length; k++) {
-            if (userGuessLetterElement === splitWordGuessPick[k]) {
-                currentGuessWord[k] = userGuessLetterElement;
-                alreadyGuessedLetterIndex++;
-                foundLetterFlag = 1;
-                console.log(alreadyGuessedLetterIndex);
-                // Hide the directions
-                directionsText.textContent = "";
-                currentGuessWordText.textContent = " Current Word: " + currentGuessWord.join('');
-                if (alreadyGuessedLetterIndex === 1) {
-                    userGuessLetter.push(userGuessLetterElement);
-                    userGuessLetterText.textContent = " Letters already guessed: " + userGuessLetter.join('');
-                    // Checking if the user has guessed the entire word:
-                    if (JSON.stringify(currentGuessWord) === JSON.stringify(splitWordGuessPick)) {
-                        wins++;
-                        winsText.textContent = " Wins: " + wins;
-                        songText.textContent = " " + songTitleWordGuessPick;
-                        removeImage("pic-text");
-                        myImage = appendImage(picWordGuessPick, "band-pic", "pic-text");
-                        console.log(guessesremaining);
-                        console.log(JSON.stringify(currentGuessWord));
-                        console.log(JSON.stringify(splitWordGuessPick));
+                    timeout_init();
 
-
-                        // document.body.addEventListener("click", initialize(),{once:true})
-                        if (window.alert("Well done, you won!")) {
-                            location.reload();
-                            document.onkeyup = function (event) {
-                                wins = wins;
-                                losses = losses;
-
-
-                            }
-                        }
-                    }
                 }
+            }
+        }
+        else {
+            // Hide the directions:
+            directionsText.textContent = "";
+            wrongLetterIndex++;
+        }
+    }
+    if (foundLetterFlag !== 1 && wrongLetterIndex === splitWordGuessPick.length) {
+        guessesremaining = guessesremaining - 1;
+        guessesremainingText.textContent = " Number of guesses remaining: " + guessesremaining;
+        if (guessesremaining === 0) {
+            losses++;
+            lossesText.textContent = "Losses: " + losses;
+            console.log(guessesremaining);
+            alert("Sorry, you lost");
+            if (confirm("Play again?")) {
+                initialize();
             }
             else {
-                // Hide the directions:
-                directionsText.textContent = "";
-                wrongLetterIndex++;
+                window.location.reload();
             }
         }
-        if (foundLetterFlag !== 1 && wrongLetterIndex === splitWordGuessPick.length) {
-            guessesremaining = guessesremaining - 1;
-            guessesremainingText.textContent = " Number of guesses remaining: " + guessesremaining;
-            if (guessesremaining === 0) {
-                losses++;
-                lossesText.textContent = "Losses: " + losses;
-                console.log(guessesremaining);
-                if (window.alert("Sorry, you lost")) {
-                    location.reload();
-                    document.onkeyup = function (event) {}
-                }
-            }
-        }
-    // }
+    }
 }
+
