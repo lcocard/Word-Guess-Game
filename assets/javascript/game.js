@@ -16,7 +16,6 @@ function initialize() {
     removeImage("pic-text");
     appendImage("assets/images/4-WordGuess.jpg", "band-pic", "pic-text");
     var alreadyGuessedLetterIndex = 0;
-    var foundLetterFlag = 0;
     var wrongLetterIndex = 0;
     var wordGuessArray = [
         {
@@ -113,11 +112,11 @@ function removeImage(imageId) {
 //used to delay the initialize() function, otherwise it starts before pictures are loaded.
 function timeout_trigger_init() {
     if (confirm("Play again?")) {
-    document.body.addEventListener("click", initialize(),{once:true});
-}
-else {
-    window.location.reload();
-}
+        document.body.addEventListener("click", initialize(), { once: true });
+    }
+    else {
+        window.location.reload();
+    }
 }
 
 function timeout_init() {
@@ -140,15 +139,6 @@ function timeout_youlost() {
     setTimeout('timeout_trigger_youlost()', 100);
 }
 
-function timeout_trigger_guessesremaining() {
-    guessesremaining = guessesremaining - 1;
-}
-
-function timeout_guessesremaining() {
-    setTimeout('timeout_trigger_guessesremaining()', 50);
-}
-
-
 
 
 console.log(guessesremaining);
@@ -161,7 +151,6 @@ initialize();
 
 document.onkeyup = function (event) {
     var alreadyGuessedLetterIndex = 0;
-    var foundLetterFlag = 0;
     var wrongLetterIndex = 0;
 
     // Determines which key was pressed.
@@ -172,7 +161,6 @@ document.onkeyup = function (event) {
         if (userGuessLetterElement === splitWordGuessPick[k]) {
             currentGuessWord[k] = userGuessLetterElement;
             alreadyGuessedLetterIndex++;
-            foundLetterFlag = 1;
             console.log(alreadyGuessedLetterIndex);
             // Hide the directions
             directionsText.textContent = "";
@@ -204,8 +192,11 @@ document.onkeyup = function (event) {
             wrongLetterIndex++;
         }
     }
-    if (foundLetterFlag !== 1 && wrongLetterIndex === splitWordGuessPick.length) {
-        timeout_guessesremaining();
+    console.log(wrongLetterIndex);
+    console.log(splitWordGuessPick.length);
+    if (wrongLetterIndex === splitWordGuessPick.length) {
+        // timeout_guessesremainingsubstract();
+        guessesremaining = guessesremaining - 1;
         guessesremainingText.textContent = " Number of guesses remaining: " + guessesremaining;
         if (guessesremaining === 0) {
             losses++;
