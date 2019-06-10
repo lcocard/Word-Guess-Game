@@ -140,6 +140,17 @@ function timeout_youlost() {
     setTimeout('timeout_trigger_youlost()', 100);
 }
 
+function timeout_trigger_guessesremaining() {
+    guessesremaining = guessesremaining - 1;
+}
+
+function timeout_guessesremaining() {
+    setTimeout('timeout_trigger_guessesremaining()', 50);
+}
+
+
+
+
 console.log(guessesremaining);
 
 initialize();
@@ -194,7 +205,7 @@ document.onkeyup = function (event) {
         }
     }
     if (foundLetterFlag !== 1 && wrongLetterIndex === splitWordGuessPick.length) {
-        guessesremaining = guessesremaining - 1;
+        timeout_guessesremaining();
         guessesremainingText.textContent = " Number of guesses remaining: " + guessesremaining;
         if (guessesremaining === 0) {
             losses++;
