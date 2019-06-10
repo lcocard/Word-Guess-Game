@@ -16,6 +16,7 @@
 
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
 </head>
 
 <body>
@@ -48,7 +49,7 @@
                 <div class="col-sm-4" style="padding: 0; border: 1px solid white;">
                     <div class="card" style="width: 100%; height: auto; border: 0; background-color: black">
                         <div id="band-pic">
-                            <img class="card-img-top" id="pic-text" src="assets/images/4-WordGuess.jpg">
+                            <img class="card-img-top" id="pic-text" src="">
                         </div>
                     </div>
                 </div>
@@ -56,11 +57,21 @@
                     <div>
                         <p id="directions-text">Press any key to get started!</p>
                         <p id="wins-text"></p>
+                        <p id="losses-text"></p>
                         <p id="currentGuessWord-text"></p>
                         <p id="guessesremaining-text"></p>
                         <p id="userGuessLetter-text"></p>
                     </div>
 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" style="padding: 0; border-bottom: 1px solid black; color: white;">
+                    <br>
+                    <p>Click the following button if you would like to restart the game: </p>
+                    <form>
+                        <input type="button" onclick="initialize()" value="Restart" />
+                    </form>
                 </div>
             </div>
         </div>
