@@ -121,7 +121,7 @@ else {
 }
 
 function timeout_init() {
-    setTimeout('timeout_trigger_init()', 350);
+    setTimeout('timeout_trigger_init()', 250);
 }
 
 function timeout_trigger_youwon() {
@@ -129,7 +129,7 @@ function timeout_trigger_youwon() {
 }
 
 function timeout_youwon() {
-    setTimeout('timeout_trigger_youwon()', 300);
+    setTimeout('timeout_trigger_youwon()', 100);
 }
 
 function timeout_trigger_youlost() {
@@ -137,7 +137,7 @@ function timeout_trigger_youlost() {
 }
 
 function timeout_youlost() {
-    setTimeout('timeout_trigger_youlost()', 300);
+    setTimeout('timeout_trigger_youlost()', 100);
 }
 
 console.log(guessesremaining);
