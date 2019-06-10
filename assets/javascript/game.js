@@ -111,15 +111,34 @@ function removeImage(imageId) {
 
 //setTimeout() function allows code to be executed a set time after some trigger - window alert;
 //used to delay the initialize() function, otherwise it starts before pictures are loaded.
-function timeout_trigger() {
-    window.alert("Well done, you won!");
+function timeout_trigger_init() {
+    if (confirm("Play again?")) {
     document.body.addEventListener("click", initialize(),{once:true});
+}
+else {
+    window.location.reload();
+}
 }
 
 function timeout_init() {
-    setTimeout('timeout_trigger()', 250);
+    setTimeout('timeout_trigger_init()', 350);
 }
 
+function timeout_trigger_youwon() {
+    alert("Well done, you won!");
+}
+
+function timeout_youwon() {
+    setTimeout('timeout_trigger_youwon()', 300);
+}
+
+function timeout_trigger_youlost() {
+    alert("Sorry, you lost");
+}
+
+function timeout_youlost() {
+    setTimeout('timeout_trigger_youlost()', 300);
+}
 
 console.log(guessesremaining);
 
@@ -161,6 +180,8 @@ document.onkeyup = function (event) {
                     console.log(JSON.stringify(currentGuessWord));
                     console.log(JSON.stringify(splitWordGuessPick));
 
+                    timeout_youwon();
+
                     timeout_init();
 
                 }
@@ -179,14 +200,10 @@ document.onkeyup = function (event) {
             losses++;
             lossesText.textContent = "Losses: " + losses;
             console.log(guessesremaining);
-            alert("Sorry, you lost");
-            if (confirm("Play again?")) {
-                initialize();
-            }
-            else {
-                window.location.reload();
-            }
+
+            timeout_youlost();
+
+            timeout_init();
         }
     }
 }
-
