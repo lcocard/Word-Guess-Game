@@ -177,7 +177,7 @@ document.onkeyup = function (event) {
             // Hide the directions
             directionsText.textContent = "";
             currentGuessWordText.textContent = " Current Word: " + currentGuessWord.join('');
-            if (alreadyGuessedLetterIndex === 1) {
+            if (alreadyGuessedLetterIndex !== 0) {
                 userGuessLetter.push(userGuessLetterElement);
                 userGuessLetterText.textContent = " Letters already guessed: " + userGuessLetter.join('');
                 // Checking if the user has guessed the entire word:
