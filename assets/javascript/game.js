@@ -120,7 +120,7 @@ function timeout_trigger_init() {
 }
 
 function timeout_init() {
-    setTimeout('timeout_trigger_init()', 250);
+    setTimeout(timeout_trigger_init, 500);
 }
 
 function timeout_trigger_youwon() {
@@ -128,7 +128,7 @@ function timeout_trigger_youwon() {
 }
 
 function timeout_youwon() {
-    setTimeout('timeout_trigger_youwon()', 100);
+    setTimeout(timeout_trigger_youwon, 350);
 }
 
 function timeout_trigger_youlost() {
@@ -136,7 +136,7 @@ function timeout_trigger_youlost() {
 }
 
 function timeout_youlost() {
-    setTimeout('timeout_trigger_youlost()', 100);
+    setTimeout(timeout_trigger_youlost, 350);
 }
 
 
